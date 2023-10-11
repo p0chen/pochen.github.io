@@ -1,0 +1,1217 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="pochen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="渗透测试流程？  确定目标 信息收集 漏洞扫描 漏洞利用 形成报告  1.信息收集包括内容1. 域名相关的信息域名是什么。&gt;1.互联网上某个网页或Web应用程序的名称 &gt; &gt;2.它由一串用点分隔的字符组成的，用于在数据传输时标识计算机的电子方位或地理位置。 &gt; &gt;3.域名的目的是为网站提供一个简单，可识别的名称，方便用户和浏览器访问。 &gt; &gt;4.如果没有域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信息收集">
+<meta property="og:url" content="http://example.com/2023/10/08/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-1/index.html">
+<meta property="og:site_name" content="blog">
+<meta property="og:description" content="渗透测试流程？  确定目标 信息收集 漏洞扫描 漏洞利用 形成报告  1.信息收集包括内容1. 域名相关的信息域名是什么。&gt;1.互联网上某个网页或Web应用程序的名称 &gt; &gt;2.它由一串用点分隔的字符组成的，用于在数据传输时标识计算机的电子方位或地理位置。 &gt; &gt;3.域名的目的是为网站提供一个简单，可识别的名称，方便用户和浏览器访问。 &gt; &gt;4.如果没有域">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-08T00:36:32.000Z">
+<meta property="article:modified_time" content="2023-10-11T14:05:40.732Z">
+<meta property="article:author" content="pochen">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>信息收集 - blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="信息收集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-08 08:36" pubdate>
+          2023年10月8日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          68 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">信息收集</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="渗透测试流程？"><a href="#渗透测试流程？" class="headerlink" title="渗透测试流程？"></a>渗透测试流程？</h1><hr>
+<ul>
+<li>确定目标</li>
+<li>信息收集</li>
+<li>漏洞扫描</li>
+<li>漏洞利用</li>
+<li>形成报告</li>
+</ul>
+<h1 id="1-信息收集"><a href="#1-信息收集" class="headerlink" title="1.信息收集"></a>1.信息收集</h1><h2 id="包括内容"><a href="#包括内容" class="headerlink" title="包括内容"></a>包括内容</h2><h3 id="1-域名相关的信息"><a href="#1-域名相关的信息" class="headerlink" title="1. 域名相关的信息"></a>1. 域名相关的信息</h3><h4 id="域名是什么。"><a href="#域名是什么。" class="headerlink" title="域名是什么。"></a>域名是什么。</h4><pre><code class="hljs">&gt;1.互联网上某个网页或Web应用程序的名称
+&gt;
+&gt;2.它由一串用点分隔的字符组成的，用于在数据传输时标识计算机的电子方位或地理位置。
+&gt;
+&gt;3.域名的目的是为网站提供一个简单，可识别的名称，方便用户和浏览器访问。
+&gt;
+&gt;4.如果没有域名，网站将通过其IP地址来识别，这些IP地址显示为一串数字，不易记忆。
+
+域名可分为：
+
+1.国际域名
+
+    .com(商业公司);.net(网络服务);.org(组织协会等);.gov(政府部
+    门);.edu(教育机构);.mil(军事领域);.int(国际组织)
+
+2.国别域名
+    
+    .CN代表中国，.UK代表英国，.US代表美国		
+
+
+3.新顶级域名
+
+    biz, info，name，pro，aero, coop, museum…
+</code></pre>
+<h4 id="域名与IP："><a href="#域名与IP：" class="headerlink" title="域名与IP："></a>域名与IP：</h4><pre><code class="hljs">&gt;域名和IP地址都是为网址提供访问入口的，只是访问的形式不一样1。 域名是作为代替IP地址的形式而存在的，因为IP地址在上网的过程中比较麻烦，并且不容易记录1。 域名可以对应多个IP地址，但是一个IP地址只是对应于一个域名2。 查询域名的IP地址可以通过DNS服务器或者命令提示符的nslookup命令34。 域名最终是解析到IP上的，域名与IP在内网访问还是外网访问，看IP是内网IP还是公网IP
+
+&gt;通过域名解析----&gt;得到IP地址
+</code></pre>
+<h4 id="域名联系人信息"><a href="#域名联系人信息" class="headerlink" title="域名联系人信息"></a>域名联系人信息</h4><pre><code class="hljs">&gt;所属人、邮箱、电话、地址......
+</code></pre>
+<h4 id="whois"><a href="#whois" class="headerlink" title="whois:"></a>whois:</h4><pre><code class="hljs">&gt;
+    工具：
+        1)Kali----whois
+        2)在线查询： 
+            https://whois.chinaz.com
+            https://whois.aizhan.com/
+            https://whois.aliyun.com/
+</code></pre>
+<h4 id="域名反查："><a href="#域名反查：" class="headerlink" title="域名反查："></a>域名反查：</h4><pre><code class="hljs">http://whois.chinaz.com/reverse
+</code></pre>
+<h4 id="IP，域名查询："><a href="#IP，域名查询：" class="headerlink" title="IP，域名查询："></a>IP，域名查询：</h4><pre><code class="hljs">https://site.ip138.com/
+</code></pre>
+<h4 id="ICP备案查询"><a href="#ICP备案查询" class="headerlink" title="ICP备案查询"></a>ICP备案查询</h4><pre><code class="hljs">作用:
+        必须在工信部的系统中备案，才能够通过域名访问
+工具：
+        https://icp.chinaz.com/(首选)
+        https://beian.miit.gov.cn/#/Integrated/index
+        https://www.beian88.com/
+</code></pre>
+<h4 id="企业信息查询"><a href="#企业信息查询" class="headerlink" title="企业信息查询"></a>企业信息查询</h4><pre><code class="hljs">天眼查，企查查
+</code></pre>
+<h4 id="子域名收集："><a href="#子域名收集：" class="headerlink" title="子域名收集："></a>子域名收集：</h4><pre><code class="hljs">子域名是主域名的下一级域名，通常是大型公司为了满足不同产品或业务需求在主域名基础上发展而来。 子域名一般会根据不同用途在主域名前面加上不同的前缀构成。 子域名根据主域名前面的前缀数量，又可分为二级子域名、三级子域名和多级的子域名
+</code></pre>
+<h4 id="子域名收集方法："><a href="#子域名收集方法：" class="headerlink" title="子域名收集方法："></a>子域名收集方法：</h4><pre><code class="hljs">字典猜解，域名枚举	
+
+工具：
+    子域名挖掘机：layer
+    功能强大的子域名收集：	OneForAll
+    用小字典递归地发现域名：subDomainsBrute
+</code></pre>
+<h4 id="域名DNS信息"><a href="#域名DNS信息" class="headerlink" title="域名DNS信息"></a>域名DNS信息</h4><pre><code class="hljs">简介：
+DNS是域名解析协议
+DNS 是域名系统 (Domain Name System) 的缩写，是因特网的一项核心服务，它作为可以将域名和IP地址相互映射的一个分布式数据库，能够使人更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。这也是DNS的官方说法。说白了就是：在互联网中通过IP 地址来进行通信。但是IP 地址的表示形式是数字，很难进行记忆（比如116.213.120.232），所以为每个 IP取一个人类更易记忆的域名形式（比如www.google.com），而通过DNS 来把解析域名成为 IP（将方便人理解的命名格式解析成计算机能够理解的格式，也可以将IP 翻译成域名）
+
+DNS记录类型
+</code></pre>
+<p>​	<br>​	域名解析工具：<br>​	kali:<br>​		host url<br>​		dig	 url</p>
+<h3 id="2-IP相关的信息"><a href="#2-IP相关的信息" class="headerlink" title="2. IP相关的信息"></a>2. IP相关的信息</h3><h4 id="DNS服务器类型"><a href="#DNS服务器类型" class="headerlink" title="DNS服务器类型"></a>DNS服务器类型</h4><pre><code class="hljs">1.本地域名服务器
+2.根域名服务器
+3.顶级域名服务器
+4.授权域名服务器
+ 	
+DNS解析流程
+
+迭代查询：
+    我告诉你去哪个服务器查询，依次查询
+递归查询：
+    我帮你去下一个服务器查询，层层返回
+</code></pre>
+<h4 id="如何根据域名获得IP"><a href="#如何根据域名获得IP" class="headerlink" title="如何根据域名获得IP"></a>如何根据域名获得IP</h4><pre><code class="hljs">工具：
+    ping
+    nslookup
+
+IP归属：
+    http://ipwhois.cnnic.net.cn/
+</code></pre>
+<h4 id="如何获得CDN背后的真实IP"><a href="#如何获得CDN背后的真实IP" class="headerlink" title="如何获得CDN背后的真实IP"></a>如何获得CDN背后的真实IP</h4><p>CDN：</p>
+<pre><code class="hljs">内容分发网络
+    解决因分布、带宽、服务器性能带来的访问延迟问题，适用于站点加速、点播、直播等场景。使用户可就近取得所需内容，解决 Internet网络拥挤的状况，提高用户访问网站的响应速度和成功率。
+
+    控制时延无疑是现代信息科技的重要指标，CDN的意图就是尽可能的减少资源在转发、传输、链路抖动等情况下顺利保障信息的连贯性。
+
+通俗易懂：
+    让在各个不同的地点的网络用户，都可以迅速访问到网站提供的内容
+
+常见厂商：
+    帝联/蓝讯/网宿/七牛云/腾讯/百度/阿里云...
+
+实现流程（以阿里云为例）：
+    https://www.zhihu.com/question/36514327/answer/1604554133
+</code></pre>
+<p>获取真实IP：</p>
+<pre><code class="hljs">1.超级PING
+    查看IP数量：
+        http://ping.chinaz.com/
+        nslookup
+
+2.历史DNS
+    https://sitereport.netcraft.com/?url=
+    DNSdb：https://dnsdb.io/zh-cn/
+    微步在线：https://x.threatbook.cn
+
+3.通过子域名查询IP
+    思路：不重要的网站没有挂CDN
+
+4.国外主机解析
+    https://asm.ca.com/zh_cn/ping.php
+    http://host-tracker.com/
+    http://www.webpagetest.org/	
+    https://dnscheck.pingdom.com/
+
+5.其他	
+    网络空间搜索引擎：fofa,censys
+    邮箱：
+    手机APP抓包：
+    微信服务号抓包：
+</code></pre>
+<h3 id="3-端口服务相关的信息"><a href="#3-端口服务相关的信息" class="headerlink" title="3. 端口服务相关的信息"></a>3. 端口服务相关的信息</h3><pre><code class="hljs">1.端口扫描思路：
+
+    1）一个服务对应一个端口。
+
+    2）本机端口查询：
+
+        Windows：nststat -ano|findstr 3306
+        Linux：netstat -an|grep 3306
+
+    3）远程机器端口：
+
+        telnet ip:端口
+        wget ip:端口
+        nc -vz ip:端口
+
+2.常见端口及漏洞（端口服务信息课件）
+
+    文件共享服务
+    远程连接服务
+    web应用服务
+    数据库服务
+    邮件服务
+    网络常见协议
+    特殊服务
+
+3.端口扫描工具
+
+    nmap:（nmap使用技巧）
+        基本介绍
+            1）扫描主机
+            2）扫描端口
+            3）探测操作系统，软件版本
+        参数分类
+        参数示例
+        脚本
+
+    其它工具：
+        masscan、nbtscan
+        http://coolaf.com/tool/port
+</code></pre>
+<h3 id="4-指纹识别（CMS-CDF-WAF）"><a href="#4-指纹识别（CMS-CDF-WAF）" class="headerlink" title="4. 指纹识别（CMS&#x2F;CDF&#x2F;WAF）"></a>4. 指纹识别（CMS&#x2F;CDF&#x2F;WAF）</h3><h4 id="什么是指纹识别："><a href="#什么是指纹识别：" class="headerlink" title="什么是指纹识别："></a>什么是指纹识别：</h4><pre><code class="hljs">根据关键特征，识别程序名称，版本等信息
+
+识别对象：
+    
+    1、CMS信息：
+        比如Discuz、织梦、帝国CMS、PHPCMS、ECshop等；
+    2、前端技术：
+        比如HTML5、jquery、bootstrap、Vue、ace等；
+    3、开发语言：
+        比如PHP、Java、Ruby、Python、C#等；
+    4、Web服务器：
+        比如Apache、 Nginx,、IIS、lighttpd等；	
+    5、应用服务器：
+        比如Tomcat、Jboss、Weblogic、Websphere等；
+    6、操作系统信息：
+        比如Linux、win2k8、win7、Kali、Centos等；
+    7、CDN信息：
+        是否使用CDN，如cloudflare、帝联、蓝讯、网宿、七牛云、阿里云等；
+    8、WAF信息：
+        是否使用WAF，如D盾、云锁、宝塔、安全狗、360等
+</code></pre>
+<h4 id="什么是CMS"><a href="#什么是CMS" class="headerlink" title="什么是CMS"></a>什么是CMS</h4><pre><code class="hljs">Content Management System 内容管理系统
+ 
+常见CMS:
+        
+    企业建站系统：
+        MetInfo(米拓)、蝉知、SiteServer CMS等;
+    B2C商城系统：
+        商派Shopex、ECshop、HiShop、XpShop等;
+    门户建站系统：
+        DedeCMS(织梦)、帝国CMS、PHPCMS、动易、CmsTop等;	
+    博客系统：
+        WordPress、Z-Blog等;	
+    论坛社区：
+        Discuz、PHPwind、WeCenter等;	
+    问答系统：
+        Tipask、whatsns等;	
+    知识百科系统：
+        HDwiki;	
+    B2B门户系统：
+        Destoon、B2Bbuilder、友邻B2B等;
+    人才招聘网站系统：
+        骑士CMS、PHP云人才管理系统;
+    房产网站系统：
+        FangCms等;
+    在线教育建站系统：
+        Kesion、EduSoho;		
+    电影网站系统：
+        苹果CMS、ctcms、movcms等;
+    小说文学建站系统：
+        杰奇CMS;
+</code></pre>
+<h4 id="CMS指纹识别的思路"><a href="#CMS指纹识别的思路" class="headerlink" title="CMS指纹识别的思路"></a>CMS指纹识别的思路</h4><pre><code class="hljs">版权信息
+    Powered by XXX 
+特定的文件MD5 
+    https://github.com/Lucifer1993/cmsprint
+查看网页源码
+    分析特定的路径或者代码内容
+特定文件
+    比如robots.txt
+</code></pre>
+<h4 id="CMS指纹识别的工具"><a href="#CMS指纹识别的工具" class="headerlink" title="CMS指纹识别的工具"></a>CMS指纹识别的工具</h4><pre><code class="hljs">Kali自带工具：
+    whatweb
+    cmseek
+
+浏览器插件：
+    whatruns
+    Wappalyzer
+
+在线网站
+    http://whatweb.bugscaner.com
+    http://finger.tidesec.com/
+
+离线工具：
+    御剑指纹扫描器（需要.NET Framework）
+    Test404轻量CMS指纹识别
+
+其他开源程序
+    https://github.com/Tuhinshubhra/CMSeeK
+</code></pre>
+<h4 id="CDN指纹识别工具"><a href="#CDN指纹识别工具" class="headerlink" title="CDN指纹识别工具"></a>CDN指纹识别工具</h4><pre><code class="hljs">基本工具：
+    kali自带lbd
+    load balance detector
+
+专用识别工具：
+    http://cdn.chinaz.com/
+    https://www.cdnplanet.com/tools/cdnfinder/
+
+其他
+    https://github.com/boy-hack/w8fuckcdn/
+    https://github.com/3xp10it/xcdn
+</code></pre>
+<h4 id="WAF指纹识别"><a href="#WAF指纹识别" class="headerlink" title="WAF指纹识别"></a>WAF指纹识别</h4><p>WAF是什么：</p>
+<pre><code class="hljs">Web Application Firewall Web 应用防火墙
+过滤HTTP或者HTTPS的请求，识别并拦截恶意的请求
+</code></pre>
+<p>类型：</p>
+<pre><code class="hljs">硬件型 WAF	软件型 WAF
+云 WAF		软件型 WAF
+软件型 WAF	部署在 Apache、Nginx 等 HTTP Server 中)
+</code></pre>
+<p>WAF的作用：</p>
+<pre><code class="hljs">l SQL Injection (SQLi)：阻止SQL注入
+l Cross Site Scripting (XSS)：阻止跨站脚本攻击
+l Local File Inclusion (LFI)：阻止利用本地文件包含漏洞进行攻击
+l Remote File Inclusione(RFI)：阻止利用远程文件包含漏洞进行攻击
+l Remote Code Execution (RCE)：阻止利用远程命令执行漏洞进行攻击
+l PHP Code Injectiod：阻止PHP代码注入
+l HTTP Protocol Violations：阻止违反HTTP协议的恶意访问
+l HTTPoxy：阻止利用远程代理感染漏洞进行攻击
+l Sshllshock：阻止利用Shellshock漏洞进行攻击
+l Session Fixation：阻止利用Session会话ID不变的漏洞进行攻击
+l Scanner Detection：阻止黑客扫描网站
+l Metadata/Error Leakages：阻止源代码/错误信息泄露
+l Project Honey Pot Blacklist：蜜罐项目黑名单
+l GeoIP Country Blocking：根据判断IP地址归属地来进行IP阻断
+</code></pre>
+<p>WAF的识别思路：</p>
+<pre><code class="hljs">额外的cookie；
+任何响应或请求的附加标头；
+响应内容（如果被阻止请求）；
+响应代码（如果被阻止请求）；
+IP地址（云WAF）；
+JS客户端模块（客户端WAF）
+</code></pre>
+<p>指纹库：</p>
+<pre><code class="hljs">https://github.com/CSecGroup/wafid/blob/master/finger.xml
+</code></pre>
+<p>WAF指纹识别工具：</p>
+<pre><code class="hljs">Kali自带：
+    https://github.com/EnableSecurity/wafw00f
+    用法：wafw00f https://www.12306.cn
+
+nmap： 
+    nmap www.12306.cn --script=http-waf-detect.nse
+
+sqlmap -u &quot;xxx.com?id=1&quot; --identify-waf
+
+其他：(WAF文档)
+    https://github.com/0xInfection/Awesome-WAF
+</code></pre>
+<h3 id="5-搜索引擎收集"><a href="#5-搜索引擎收集" class="headerlink" title="5.搜索引擎收集"></a>5.搜索引擎收集</h3><p>Google Hacking</p>
+<pre><code class="hljs">Google Dorks
+Google Hacking
+</code></pre>
+<p>运算符：</p>
+<pre><code class="hljs">完全匹配：“”包裹
+任意字词：
+不包含：	-xxx
+数字范围：	xx..xx
+</code></pre>
+<p>高级语法：</p>
+<pre><code class="hljs">只搜索某个网站的内容：	site:xxx.com
+网页的内容包含：	allintext: xxxxxx
+                intext:	xxxxx
+标题出现：	allintitle:	xxxx
+            intitle:	xxxx
+URL地址包含：		allinurl:xxxx
+                inurl:	xxxx
+文件类型指定：	filetype: xxxx
+index of:	文件目录结构泄露
+</code></pre>
+<p>语法数据库：</p>
+<pre><code class="hljs">https://www.exploit-db.com/google-hacking-database
+https://github.com/BullsEye0/google_dork_ list
+</code></pre>
+<p>工具：（github搜索）</p>
+<pre><code class="hljs">google hacking
+google dorks
+</code></pre>
+<h3 id="6-网络空间搜索引擎"><a href="#6-网络空间搜索引擎" class="headerlink" title="6. 网络空间搜索引擎"></a>6. 网络空间搜索引擎</h3><p>什么是网络空间：</p>
+<pre><code class="hljs">OSINT：Open source intelligence（开源网络情报）
+
+网络系统：
+网络设备：
+工业系统：
+</code></pre>
+<p>怎么扫描？</p>
+<pre><code class="hljs">网络扫描的工具：
+方式：
+    IP库
+    枚举
+</code></pre>
+<p>怎么标识一个设备呢？</p>
+<pre><code class="hljs">URL
+IP
+开放端口
+操作系统 
+物理地址
+MAC地址
+设备类型
+</code></pre>
+<p>实施威胁地图：</p>
+<p><a target="_blank" rel="noopener" href="https://cybermap.kaspersky.com/cn">https://cybermap.kaspersky.com/cn</a></p>
+<p>工具：</p>
+<pre><code class="hljs">shodan
+censys
+zoomEye
+fofa
+</code></pre>
+<h3 id="7-目录扫描"><a href="#7-目录扫描" class="headerlink" title="7. 目录扫描"></a>7. 目录扫描</h3><p>什么是目录扫描：</p>
+<pre><code class="hljs">部署的网站有一些敏感的文件：
+    
+    配置文件：	xxx.cfg
+    数据文件：	xxx.sql
+                xxx.tar.gz
+    目录：		/backup
+                /conf
+                /admin
+</code></pre>
+<p>目录扫描会泄露哪些信息：</p>
+<pre><code class="hljs">数据库用户名和密码
+服务器的用户名和密码
+网站源码
+数据库的文件
+。。。。。
+</code></pre>
+<p>为什么会泄露：</p>
+<pre><code class="hljs">配置不当的问题。
+
+本地文件包含：(local file inclusion（LFI）)
+    
+    PHP：
+        header.php
+        common.php
+        footer.php
+        function.php
+    
+    include()-文件包含函数
+
+    require()
+</code></pre>
+<h4 id="常见的敏感目录和文件"><a href="#常见的敏感目录和文件" class="headerlink" title="常见的敏感目录和文件"></a>常见的敏感目录和文件</h4><p>网站的备份文件&#x2F;数据</p>
+<pre><code class="hljs">在线压缩
+
+帝国备份王
+</code></pre>
+<p>后台登录的目录</p>
+<pre><code class="hljs">/admin
+/manage
+</code></pre>
+<p>安装包(源码)</p>
+<pre><code class="hljs">非开源，商用
+</code></pre>
+<p>上传的目录</p>
+<pre><code class="hljs">文件上传漏洞 - webshell
+
+/upload
+
+/upload.php
+</code></pre>
+<p>mysql的管理界面</p>
+<pre><code class="hljs">mysql
+
+web页面去管理
+
+phpadmin - 密码爆破 - webshell
+</code></pre>
+<p>程序的安装路径	-	&#x2F;install</p>
+<p>php的探针</p>
+<pre><code class="hljs">phpinfo
+</code></pre>
+<p>文本编辑器</p>
+<pre><code class="hljs">Ueditor
+
+kindeditor
+
+CKeditor
+
+文件上传漏洞，命令注入
+</code></pre>
+<p>Linux</p>
+<pre><code class="hljs">/etc/passwd
+
+/etc/shadow - SHA512
+
+/etc/sudoers - sudo
+</code></pre>
+<p>MacOS	- .DS_Store</p>
+<p>目录穿越</p>
+<pre><code class="hljs">windows IIS
+
+Apache
+</code></pre>
+<p>tomcat WEB-INF</p>
+<pre><code class="hljs">WEB-INF/web.xml : Web应用程序配置文件, 描述了servlet和其他的应用组件配置及命名规则.
+
+WEB-INF/database.properties : 数据库配置文件
+
+WEB-INF/classes/ : 一般用来存放Java类文件(.class)
+
+WEB-INF/lib/ : 用来存放打包好的库(.jar)
+
+WEB-INF/src/ : 用来放源代码(.asp和.php等)
+</code></pre>
+<p>编辑器的临时文件	.swp文件</p>
+<p>robots.txt</p>
+<p>sitemap.xml</p>
+<p>其它非常规文件</p>
+<pre><code class="hljs">secret.txt
+
+password.txt
+</code></pre>
+<h4 id="文件扫描思路"><a href="#文件扫描思路" class="headerlink" title="文件扫描思路"></a>文件扫描思路</h4><pre><code class="hljs">    直接在域名后面拼接路径/文件名，如果返回200，就是存在
+
+扫描方法：
+
+    暴力破解
+    字典：(kali 中自带的字典)
+        kali - wordlists
+        dirb - /usr/share/wordlists/dirb/common.txt
+    爬虫：
+        robots.txt
+        sitemap.xml
+        网页中的其它连接
+    fuzz(模糊测试)：
+</code></pre>
+<h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><p>dirb</p>
+<pre><code class="hljs">kali常用
+</code></pre>
+<p>burp suite</p>
+<p>dirbrute</p>
+<pre><code class="hljs">需要字典
+</code></pre>
+<p>dirmap </p>
+<pre><code class="hljs">一个高级web目录扫描工具，功能将会强于DirBuster、Dirsearch、cansina、御剑
+https://github.com/H4ckForJob/dirmap
+</code></pre>
+<p>wfuzz</p>
+<h3 id="8-Git-Hack"><a href="#8-Git-Hack" class="headerlink" title="8. Git Hack"></a>8. Git Hack</h3><h4 id="什么是版本控制系统"><a href="#什么是版本控制系统" class="headerlink" title="什么是版本控制系统"></a>什么是版本控制系统</h4><p>Version Control System </p>
+<pre><code class="hljs">是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。版本控制系统不仅可以应用于软件源代码的文本文件，而且可以对任何类型的文件进行版本控制。用的比较多的如svn，git等。
+</code></pre>
+<p>发展阶段：</p>
+<pre><code class="hljs">版本管理
+
+    本地VCS
+
+协同开发
+
+    文件冲突？
+        
+        自动合并不冲突的内容
+
+        标记冲突的内容
+
+    集中化的VCS
+
+        Centralized Version Control Systems(CVCS)
+
+        代表	：
+
+            CVS ，SVN
+
+去中心化
+    
+    分布式CVS
+
+        Distributed Version Control System(DVCS)
+        
+        代表：
+
+            Github、Gitlab、码云
+
+            Git
+</code></pre>
+<h4 id="为什么Git会导致信息泄露"><a href="#为什么Git会导致信息泄露" class="headerlink" title="为什么Git会导致信息泄露"></a>为什么Git会导致信息泄露</h4><p>把私有仓库&#x2F;隐私文件提交到了github</p>
+<p>部署项目的时候，不小心把 .git 文件一起打包进去，放到web网站的目录下</p>
+<pre><code class="hljs">.git有用的内容
+    
+    .git/logs/HEAD - 存储了git的log信息，可以找到历史的commit项
+    .git/index - 缓存git add的文件，暂存区
+    .git/refs/stash - git stash - 把代码存入缓存区
+    .git/refs/heads/master - .git/refs/heads/master
+    .git/objects/pack/.pack
+</code></pre>
+<h4 id="Github搜索技巧"><a href="#Github搜索技巧" class="headerlink" title="Github搜索技巧"></a>Github搜索技巧</h4><pre><code class="hljs">kali in:file  搜索文件中包含kali的代码
+kali in:path  搜索路径中包含kali的代码
+kali in:path,file  搜索路径、文件中包含kali的代码
+shodan language:python  搜索关键字shodan，语言为python的代码
+filename:config.php language:php  搜索文件名为config.php， 且语言为php
+kali topics:&gt;=5  标签数量大于等于5的
+kali size:&lt;1000  文件小于1KB的
+kali stars:10..50  star大于10小于50的
+kali pushed:&gt;2021-08-15  搜索在2021年8月15日之后提交的
+kali pushed:2021-07-01..2021-08-01  搜索在此区间
+kali created:&gt;=2021-06-01  创建时间
+kali pushed:&lt;2021-08-01 -language:java  搜索在2020年8月1日前push代码且排除java语言
+</code></pre>
+<h4 id="Git信息泄露利用方式"><a href="#Git信息泄露利用方式" class="headerlink" title="Git信息泄露利用方式"></a>Git信息泄露利用方式</h4><pre><code class="hljs">找到.git 
+
+    1）目录扫描
+    2）robots.txt
+    3）搜索引擎： intitle:&quot;index of /.git&quot;
+
+把.git下载到本地
+
+    https://github.com/WangYihang/GitHacker
+
+用git命令获取内容
+
+    git log		获取提交记录
+    git reset --hard [log hash]		恢复到某个版本
+    git diff	对比版本差异
+
+Git 基本指令的使用https://blog.csdn.net/qtiao/article/details/97783243
+
+    git config：配置信息
+    git add：添加文件到缓存命令
+    git status：查看文件的状态命令
+    git diff：查看更新的详细信息命令
+        尚未缓存的改动：git diff
+        查看已缓存的改动： git diff --cached
+        查看已缓存的与未缓存的所有改动：git diff HEAD
+        显示摘要而非整个 diff：git diff --stat
+    git commit：提交命令
+        如果你觉得 每次 commit之前要add一下，想跳过add这一步，可以直接使用 -a选项,如：
+        git commit -am &quot;第一次版本提交&quot;
+    git reset HEAD：取消缓存命令
+    git rm：删除命令
+    git mv：移动或重命名命令
+
+
+工具
+
+    https://github.com/gakki429/Git_Extract
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>信息收集</div>
+      <div>http://example.com/2023/10/08/信息收集-1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>pochen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/11/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" title="SQL注入漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SQL注入漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/07/web%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80/" title="web安全基础">
+                        <span class="hidden-mobile">web安全基础</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
