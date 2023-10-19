@@ -16,21 +16,23 @@
   <meta name="author" content="pochen">
   <meta name="keywords" content="">
   
-    <meta name="description" content="https:&#x2F;&#x2F;www.ctfhub.com&#x2F; https:&#x2F;&#x2F;vulhub.org&#x2F; https:&#x2F;&#x2F;buuoj.cn&#x2F; https:&#x2F;&#x2F;github.com&#x2F;c0ny1&#x2F;vulstudy">
+    <meta name="description" content="CSRF(XSRF) Cross-Site Request Forgery 跨站请求伪造 一、CSRF分类123CSRF(Cross-Site Request Forgery)，跟XSS漏洞攻击一样，存在巨大的危害性。你可以这么来理解：攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添">
 <meta property="og:type" content="article">
-<meta property="og:title" content="漏洞练习靶场">
-<meta property="og:url" content="http://example.com/2023/10/13/%E6%BC%8F%E6%B4%9E%E7%BB%83%E4%B9%A0%E9%9D%B6%E5%9C%BA/index.html">
+<meta property="og:title" content="CSRF跨站请求伪造">
+<meta property="og:url" content="http://example.com/2023/10/17/CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0/index.html">
 <meta property="og:site_name" content="blog">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.ctfhub.com&#x2F; https:&#x2F;&#x2F;vulhub.org&#x2F; https:&#x2F;&#x2F;buuoj.cn&#x2F; https:&#x2F;&#x2F;github.com&#x2F;c0ny1&#x2F;vulstudy">
+<meta property="og:description" content="CSRF(XSRF) Cross-Site Request Forgery 跨站请求伪造 一、CSRF分类123CSRF(Cross-Site Request Forgery)，跟XSS漏洞攻击一样，存在巨大的危害性。你可以这么来理解：攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-10-13T13:44:20.000Z">
-<meta property="article:modified_time" content="2023-10-17T05:48:11.112Z">
+<meta property="og:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231017164203485.png">
+<meta property="article:published_time" content="2023-10-17T08:10:57.000Z">
+<meta property="article:modified_time" content="2023-10-19T15:18:29.745Z">
 <meta property="article:author" content="pochen">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231017164203485.png">
   
   
   
-  <title>漏洞练习靶场 - blog</title>
+  <title>CSRF跨站请求伪造 - blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="漏洞练习靶场"></span>
+            <span id="subtitle" data-typed-text="CSRF跨站请求伪造"></span>
           
         </div>
 
@@ -207,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-13 21:44" pubdate>
-          2023年10月13日 晚上
+        <time datetime="2023-10-17 16:10" pubdate>
+          2023年10月17日 下午
         </time>
       </span>
     
@@ -219,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          92 字
+          2.9k 字
         
       </span>
     
@@ -230,7 +232,7 @@
         
         
         
-          1 分钟
+          24 分钟
         
       </span>
     
@@ -267,15 +269,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">漏洞练习靶场</h1>
+            <h1 id="seo-header">CSRF跨站请求伪造</h1>
             
             
               <div class="markdown-body">
                 
-                <p><a target="_blank" rel="noopener" href="https://www.ctfhub.com/">https://www.ctfhub.com/</a></p>
-<p><a target="_blank" rel="noopener" href="https://vulhub.org/">https://vulhub.org/</a></p>
-<p><a target="_blank" rel="noopener" href="https://buuoj.cn/">https://buuoj.cn/</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/c0ny1/vulstudy">https://github.com/c0ny1/vulstudy</a></p>
+                <p>CSRF(XSRF)</p>
+<p>Cross-Site Request Forgery</p>
+<p>跨站请求伪造</p>
+<h2 id="一、CSRF分类"><a href="#一、CSRF分类" class="headerlink" title="一、CSRF分类"></a>一、CSRF分类</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">CSRF</span><span class="hljs-params">(Cross-Site Request Forgery)</span></span>，跟XSS漏洞攻击一样，存在巨大的危害性。<br><br>你可以这么来理解：攻击者盗用了你的身份，以你的名义发送恶意请求，对服务器来说这个请求是完全合法的，但是却完成了攻击者所期望的一个操作，比如以你的名义发送邮件、发消息，盗取你的账号，添加系统管理员，甚至于购买商品、虚拟货币转账等<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-GET型："><a href="#1-GET型：" class="headerlink" title="1.GET型："></a>1.GET型：</h3><p>如果一个网站某个地方的功能，比如用户修改邮箱是通过GET请求进行修改的。如：&#x2F;user.php?id&#x3D;1&amp;email&#x3D;<a href="mailto:&#49;&#x32;&#51;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#x6d;">&#49;&#x32;&#51;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#x6f;&#x6d;</a> ，这个链接的意思是用户id&#x3D;1将邮箱修改为<a href="mailto:&#x31;&#x32;&#x33;&#64;&#x31;&#54;&#51;&#x2e;&#99;&#111;&#109;">&#x31;&#x32;&#x33;&#64;&#x31;&#54;&#51;&#x2e;&#99;&#111;&#109;</a>。当我们把这个链接修改为 &#x2F;user.php?id&#x3D;1&amp;email&#x3D;<a href="mailto:&#97;&#98;&#99;&#x40;&#49;&#54;&#51;&#46;&#99;&#111;&#x6d;">&#97;&#98;&#99;&#x40;&#49;&#54;&#51;&#46;&#99;&#111;&#x6d;</a> ，然后通过各种手段发送给被攻击者，诱使被攻击者点击我们的链接，当用户刚好在访问这个网站，他同时又点击了这个链接，那么悲剧发生了。这个用户的邮箱被修改为 <a href="mailto:&#97;&#98;&#99;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#x6d;">&#97;&#98;&#99;&#x40;&#x31;&#54;&#51;&#46;&#x63;&#111;&#x6d;</a> 了</p>
+<h3 id="2-POST型："><a href="#2-POST型：" class="headerlink" title="2.POST型："></a>2.POST型：</h3><p>在普通用户的眼中，点击网页-&gt;打开试看视频-&gt;购买视频是一个很正常的一个流程。可是在攻击者的眼中可以算正常，但又不正常的，当然不正常的情况下，是在开发者安全意识不足所造成的。攻击者在购买处抓到购买时候网站处理购买(扣除)用户余额的地址。比如：&#x2F;coures&#x2F;user&#x2F;handler&#x2F;25332&#x2F;buy.php 。通过提交表单，buy.php处理购买的信息，这里的25532为视频ID。那么攻击者现在构造一个链接，链接中包含以下内容</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">&lt;form action=/coures/user/handler/25332/buy method=POST&gt;<br>&lt;input type=&quot;text&quot; name=&quot;xx&quot; value=&quot;xx&quot; /&gt;<br>&lt;/form&gt;<br>&lt;script&gt; document.forms[0].submit(); &lt;/script&gt; <br></code></pre></td></tr></table></figure>
+
+<p>当用户访问该页面后，表单会自动提交，相当于模拟用户完成了一次POST操作，自动购买了id为25332的视频，从而导致受害者余额扣除</p>
+<h2 id="二、CSRF攻击原理"><a href="#二、CSRF攻击原理" class="headerlink" title="二、CSRF攻击原理"></a>二、CSRF攻击原理</h2><p><img src="https://blog-p0chen.oss-cn-beijing.aliyuncs.com/img/image-20231017164203485.png" srcset="/img/loading.gif" lazyload alt="image-20231017164203485"></p>
+<ol>
+<li>用户输入账号信息请求登录A网站</li>
+<li>A网站验证用户信息，通过验证后返回给用户一个cookie</li>
+<li>在未退出网站A之前，在同一浏览器中请求了hack构造的恶意网站B</li>
+<li>B网站收到用户请求后返回攻击性代码，构造访问A网站的语句</li>
+<li>浏览器收到攻击性代码后，在用户不知情的情况下携带cookie信息请求了A网站。此时A网站不知道这是由B发起的。那么这时黑客就可以进行一下骚操作了。</li>
+</ol>
+<h3 id="CSRF漏洞挖掘"><a href="#CSRF漏洞挖掘" class="headerlink" title="CSRF漏洞挖掘"></a>CSRF漏洞挖掘</h3><p>1、道：怎么确定一个接口地址有没有CSRF漏洞呢？</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">从第三方网站直接调用接口可以成功<br></code></pre></td></tr></table></figure>
+
+<p>2、术：具体怎么操作？</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-number">1</span>）抓取一个正常请求的数据包，如果没有<span class="hljs-keyword">Referer</span>字段和token，那么极有可能存在CSRF漏洞<br><span class="hljs-number">2</span>）如果有<span class="hljs-keyword">Referer</span>字段，但是去掉<span class="hljs-keyword">Referer</span>字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞。<br><span class="hljs-number">3</span>）利用工具进行CSRF检测。如：CSRFTESTER，CSRF REQUEST BUILDER等<br></code></pre></td></tr></table></figure>
+
+
+
+<p>3、器：有没有工具可以使用？</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">BurpSuite Send To Enagement tools Generate CSRF PoC<br>CSRFTester<br>https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/s0md3v/</span>Bolt<br>https:<span class="hljs-regexp">//</span>cloud.tencent.com<span class="hljs-regexp">/product/</span>vss<br></code></pre></td></tr></table></figure>
+
+<h2 id="三、CSRF攻击的防御"><a href="#三、CSRF攻击的防御" class="headerlink" title="三、CSRF攻击的防御"></a>三、CSRF攻击的防御</h2><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-number">1.</span>验证 HTTP Referer 字段<br><br>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站，比如需要访问 http:<span class="hljs-comment">//bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory，用户必须先登陆 bank.example，然后通过点击页面上的按钮来触发转账事件。这时，该转帐请求的 Referer 值就会是转账按钮所在的页面的 URL，通常是以 bank.example 域名开头的地址。而如果黑客要对银行网站实施 CSRF 攻击，他只能在他自己的网站构造请求，当用户通过黑客的网站发送请求到银行时，该请求的 Referer 是指向黑客自己的网站。因此，要防御 CSRF 攻击，银行网站只需要对于每一个转账请求验证其 Referer 值，如果是以 bank.example 开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是黑客的 CSRF 攻击，拒绝该请求</span><br><br><span class="hljs-number">2.</span>在请求地址中添加 <span class="hljs-built_in">token</span> 并验证(Anti-CSRF <span class="hljs-built_in">token</span>)<br><br>CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 <span class="hljs-built_in">token</span>，并在服务器端建立一个拦截器来验证这个 <span class="hljs-built_in">token</span>，如果请求中没有 <span class="hljs-built_in">token</span> 或者 <span class="hljs-built_in">token</span> 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求<br><br><span class="hljs-number">3.</span>在 HTTP 头中自定义属性并验证<br><br>这种方法也是使用 <span class="hljs-built_in">token</span> 并进行验证，和上一种方法不同的是，这里并不是把 <span class="hljs-built_in">token</span> 以参数的形式置于 HTTP 请求之中，而是把它放到 HTTP 头中自定义的属性里。通过 XMLHttpRequest 这个类，可以一次性给所有该类请求加上 CSRFToken 这个 HTTP 头属性，并把 <span class="hljs-built_in">token</span> 值放入其中。这样解决了上种方法在请求中加入 <span class="hljs-built_in">token</span> 的不便，同时，通过 XMLHttpRequest 请求的地址不会被记录到浏览器的地址栏，也不用担心 <span class="hljs-built_in">token</span> 会透过 Referer 泄露到其他网站中去<br><br><span class="hljs-number">4.</span>二次验证<br><br>验证码<br>短信<br>扫码<br>人脸识别<br><br><span class="hljs-number">5.</span>浏览器的保护措施<br><br>Referrer Policy<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -293,8 +322,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>漏洞练习靶场</div>
-      <div>http://example.com/2023/10/13/漏洞练习靶场/</div>
+      <div>CSRF跨站请求伪造</div>
+      <div>http://example.com/2023/10/17/CSRF跨站请求伪造/</div>
     </div>
     <div class="license-meta">
       
@@ -306,7 +335,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月13日</div>
+          <div>2023年10月17日</div>
         </div>
       
       
@@ -338,18 +367,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/16/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="docker 常用命令">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">docker 常用命令</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/11/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E/" title="SQL注入漏洞">
-                        <span class="hidden-mobile">SQL注入漏洞</span>
+                      <a href="/2023/10/16/docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="docker 常用命令">
+                        <span class="hidden-mobile">docker 常用命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
